@@ -1,0 +1,15 @@
+query {
+  allPosts {
+    data {
+      _id
+      code
+      poster
+      video
+      type
+      hashtag {
+        _id
+        label
+      }
+    }
+  }
+}

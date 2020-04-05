@@ -1,0 +1,162 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Hashtag {
+  "The document's ID."
+  _id: ID!
+  "The document's timestamp."
+  _ts: Long!
+  label: String!
+  posts(
+    "The pagination cursor."
+    _cursor: String,
+    "The number of items to return per page."
+    _size: Int
+  ): PostPage!
+}
+
+"The pagination object for elements of type 'Hashtag'."
+type HashtagPage {
+  "A cursor for elements coming after the current page."
+  after: String
+  "A cursor for elements coming before the current page."
+  before: String
+  "The elements of type 'Hashtag' in this page."
+  data: [Hashtag]!
+}
+
+type Mutation {
+  "Create a new document in the collection of 'Hashtag'"
+  createHashtag(
+    "'Hashtag' input values"
+    data: HashtagInput!
+  ): Hashtag!
+  "Create a new document in the collection of 'Post'"
+  createPost(
+    "'Post' input values"
+    data: PostInput!
+  ): Post!
+  "Delete an existing document in the collection of 'Hashtag'"
+  deleteHashtag(
+    "The 'Hashtag' document's ID"
+    id: ID!
+  ): Hashtag
+  "Delete an existing document in the collection of 'Post'"
+  deletePost(
+    "The 'Post' document's ID"
+    id: ID!
+  ): Post
+  "Update an existing document in the collection of 'Hashtag'"
+  updateHashtag(
+    "'Hashtag' input values"
+    data: HashtagInput!,
+    "The 'Hashtag' document's ID"
+    id: ID!
+  ): Hashtag
+  "Update an existing document in the collection of 'Post'"
+  updatePost(
+    "'Post' input values"
+    data: PostInput!,
+    "The 'Post' document's ID"
+    id: ID!
+  ): Post
+}
+
+type Post {
+  "The document's ID."
+  _id: ID!
+  "The document's timestamp."
+  _ts: Long!
+  code: String!
+  hashtag: Hashtag!
+  poster: String!
+  text: String
+  type: Type!
+  video: String!
+}
+
+"The pagination object for elements of type 'Post'."
+type PostPage {
+  "A cursor for elements coming after the current page."
+  after: String
+  "A cursor for elements coming before the current page."
+  before: String
+  "The elements of type 'Post' in this page."
+  data: [Post]!
+}
+
+type Query {
+  allHashtags(
+    "The pagination cursor."
+    _cursor: String,
+    "The number of items to return per page."
+    _size: Int
+  ): HashtagPage!
+  allPosts(
+    "The pagination cursor."
+    _cursor: String,
+    "The number of items to return per page."
+    _size: Int
+  ): PostPage!
+  "Find a document from the collection of 'Hashtag' by its id."
+  findHashtagByID(
+    "The 'Hashtag' document's ID"
+    id: ID!
+  ): Hashtag
+  findHashtagByLabel(label: String!): Hashtag
+  "Find a document from the collection of 'Post' by its id."
+  findPostByID(
+    "The 'Post' document's ID"
+    id: ID!
+  ): Post
+}
+
+enum Type {
+  INSTAGRAM
+}
+
+"'Hashtag' input values"
+input HashtagInput {
+  label: String!
+  posts: HashtagPostsRelation
+}
+
+"Allow manipulating the relationship between the types 'Hashtag' and 'Post'."
+input HashtagPostsRelation {
+  "Connect one or more documents of type 'Post' with the current document using their IDs."
+  connect: [ID]
+  "Create one or more documents of type 'Post' and associate them with the current document."
+  create: [PostInput]
+  "Disconnect the given documents of type 'Post' from the current document using their IDs."
+  disconnect: [ID]
+}
+
+"Allow manipulating the relationship between the types 'Post' and 'Hashtag' using the field 'Post.hashtag'."
+input PostHashtagRelation {
+  "Connect a document of type 'Hashtag' with the current document using its ID."
+  connect: ID
+  "Create a document of type 'Hashtag' and associate it with the current document."
+  create: HashtagInput
+}
+
+"'Post' input values"
+input PostInput {
+  code: String!
+  hashtag: PostHashtagRelation
+  poster: String!
+  text: String
+  type: Type!
+  video: String!
+}
+
+
+scalar Date
+
+scalar Time
+
+"The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1."
+scalar Long

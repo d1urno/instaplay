@@ -1,0 +1,13 @@
+mutation($id: ID!, $data: PostInput!) {
+  updatePost(id: $id, data: $data) {
+    _id
+      code
+      poster
+      video
+      type
+      hashtag {
+        _id
+        label
+      }
+  }
+}

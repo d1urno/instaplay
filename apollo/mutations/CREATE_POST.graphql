@@ -1,0 +1,12 @@
+mutation($data: PostInput!) {
+  createPost(data: $data) {
+    _id
+    poster
+    video
+    code
+    hashtag {
+      _id
+      label
+    }
+  }
+}

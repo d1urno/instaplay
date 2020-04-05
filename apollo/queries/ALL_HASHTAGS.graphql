@@ -1,0 +1,13 @@
+query {
+  allHashtags {
+    data {
+      _id
+      label
+      posts {
+        data {
+          _id
+        }
+      }
+    }
+  }
+}

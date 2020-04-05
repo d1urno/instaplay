@@ -1,0 +1,15 @@
+query($label: String!) {
+  findHashtagByLabel(label: $label) {
+    _id
+    label
+    posts {
+      data {
+        _id
+        code
+        poster
+        video
+        type
+      }
+    }
+  }
+}

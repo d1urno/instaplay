@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/now-builder",
+      "config": {}
+    }
+  ],
+  "build": {
+    "env": {
+      "EMAILJS_USER_ID": "@emailjs-user-id"
+    }
+  }
+}
