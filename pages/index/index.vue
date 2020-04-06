@@ -86,7 +86,7 @@ export default {
         for (let i = 0; i < data.allPosts.data.length; i++) {
           const post = data.allPosts.data[i]
           promises.push(
-            app.$axios.get(post.poster).catch(async () => {
+            app.$axios.get(post.video).catch(async () => {
               return await app.$axios.$get(`https://www.instagram.com/p/${post.code}/?__a=1`).then(async (res) => {
                 const id = post._id
                 const data2 = {
